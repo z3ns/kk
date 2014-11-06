@@ -21,9 +21,9 @@ shuffle($csv);
 <html>
 <head>
 <title>Aufgabe 1</title>
-</head>
-Test  
+</head>  
 <body>
+Test
 <table border="1" style="border:1px solid #000000;">
 	<tr>
 		<th>id</th>
