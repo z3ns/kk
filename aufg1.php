@@ -24,7 +24,7 @@ shuffle($csv);
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 </head>  
 <body>
-
+Encode
 <table border="1" style="border:1px solid #000000;">
 	<tr>
 		<th>id</th>
@@ -36,7 +36,43 @@ shuffle($csv);
 	<?php for($i = 0; $i < 10; $i++){ ?>
 	<tr>
 		<td><?php echo $csv[$i]["id"]?></td>
-		<td><?php echo $csv[$i]["name"]?></td>
+		<td><?php echo utf8_encode($csv[$i]["name"])?></td>
+		<td><?php echo $csv[$i]["cond"]?></td>
+		<td><?php echo $csv[$i]["vat"]?></td>
+	<tr>
+	<?php } ?>
+</table>
+Decode
+<table border="1" style="border:1px solid #000000;">
+	<tr>
+		<th>id</th>
+		<th>name</th>
+		<th>cond</th>
+		<th>vat</th>
+	</tr>
+
+	<?php for($i = 0; $i < 10; $i++){ ?>
+	<tr>
+		<td><?php echo $csv[$i]["id"]?></td>
+		<td><?php echo utf8_decode($csv[$i]["name"])?></td>
+		<td><?php echo $csv[$i]["cond"]?></td>
+		<td><?php echo $csv[$i]["vat"]?></td>
+	<tr>
+	<?php } ?>
+</table>
+iconv
+<table border="1" style="border:1px solid #000000;">
+	<tr>
+		<th>id</th>
+		<th>name</th>
+		<th>cond</th>
+		<th>vat</th>
+	</tr>
+
+	<?php for($i = 0; $i < 10; $i++){ ?>
+	<tr>
+		<td><?php echo $csv[$i]["id"]?></td>
+		<td><?php echo iconv("UTF-8", "ISO-8859-1", $csv[$i]["name"]);?></td>
 		<td><?php echo $csv[$i]["cond"]?></td>
 		<td><?php echo $csv[$i]["vat"]?></td>
 	<tr>
