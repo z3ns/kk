@@ -21,9 +21,10 @@ shuffle($csv);
 <html>
 <head>
 <title>Aufgabe 1</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>  
 <body>
-Test
+
 <table border="1" style="border:1px solid #000000;">
 	<tr>
 		<th>id</th>
