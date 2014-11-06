@@ -1,5 +1,6 @@
 <?php 
-//setlocale(LC_ALL, 'en_US.iso8859-1');  
+//header('Content-Type: text/html; charset=UTF-8');
+
 $handle = fopen("Probeaufgabe_Testdaten.csv", "r");
 
 while (($row = fgetcsv($handle, 200, ";")) !== FALSE)
@@ -14,17 +15,15 @@ while (($row = fgetcsv($handle, 200, ";")) !== FALSE)
 fclose($handle);
 
 shuffle($csv);
-// echo "<pre>";
-// print_r($GLOBALS);
-// echo "</pre>";
 ?>
 <html>
 <head>
 <title>Aufgabe 1</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-</head>  
+<!-- <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" /> -->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+</head>
+  
 <body>
-Encode
 <table border="1" style="border:1px solid #000000;">
 	<tr>
 		<th>id</th>
@@ -33,50 +32,18 @@ Encode
 		<th>vat</th>
 	</tr>
 
-	<?php for($i = 0; $i < 10; $i++){ ?>
+	<?php for($i = 0; $i <sizeof($csv); $i++){ ?>
 	<tr>
 		<td><?php echo $csv[$i]["id"]?></td>
-		<td><?php echo utf8_encode($csv[$i]["name"])?></td>
-		<td><?php echo $csv[$i]["cond"]?></td>
-		<td><?php echo $csv[$i]["vat"]?></td>
-	<tr>
-	<?php } ?>
-</table>
-Decode
-<table border="1" style="border:1px solid #000000;">
-	<tr>
-		<th>id</th>
-		<th>name</th>
-		<th>cond</th>
-		<th>vat</th>
-	</tr>
-
-	<?php for($i = 0; $i < 10; $i++){ ?>
-	<tr>
-		<td><?php echo $csv[$i]["id"]?></td>
+		<?php if(mb_detect_encoding($csv[$i]["name"]) == "UTF-8") { ?>
 		<td><?php echo utf8_decode($csv[$i]["name"])?></td>
-		<td><?php echo $csv[$i]["cond"]?></td>
-		<td><?php echo $csv[$i]["vat"]?></td>
-	<tr>
-	<?php } ?>
-</table>
-iconv
-<table border="1" style="border:1px solid #000000;">
-	<tr>
-		<th>id</th>
-		<th>name</th>
-		<th>cond</th>
-		<th>vat</th>
-	</tr>
-
-	<?php for($i = 0; $i < 10; $i++){ ?>
-	<tr>
-		<td><?php echo $csv[$i]["id"]?></td>
-		<td><?php echo iconv("UTF-8", "ISO-8859-1", $csv[$i]["name"]);?></td>
+		<?php } else {?>
+		<td><?php echo $csv[$i]["name"]?></td>
+		<?php } ?>
 		<td><?php echo $csv[$i]["cond"]?></td>
 		<td><?php echo $csv[$i]["vat"]?></td>
 	<tr>
 	<?php } ?>
 </table>
 </body>
-</html>
+</html></html>
