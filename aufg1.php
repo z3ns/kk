@@ -1,5 +1,5 @@
 <?php 
-setlocale(LC_ALL, 'en_US.iso8859-1');  
+//setlocale(LC_ALL, 'en_US.iso8859-1');  
 $handle = fopen("Probeaufgabe_Testdaten.csv", "r");
 
 while (($row = fgetcsv($handle, 200, ";")) !== FALSE)
@@ -35,7 +35,7 @@ shuffle($csv);
 	<?php for($i = 0; $i < 10; $i++){ ?>
 	<tr>
 		<td><?php echo $csv[$i]["id"]?></td>
-		<td><?php echo htmlentities($csv[$i]["name"])?></td>
+		<td><?php echo $csv[$i]["name"]?></td>
 		<td><?php echo $csv[$i]["cond"]?></td>
 		<td><?php echo $csv[$i]["vat"]?></td>
 	<tr>
